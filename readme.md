@@ -39,3 +39,8 @@ A valid expression to make 24 could be: `(8 / (3 - (8 / 3)))`
 ## License
 
 This project is licensed under the MIT License.
+
+## TODO
+
+-   [] add score function
+-   [] ux/ui redesign
