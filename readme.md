@@ -42,5 +42,5 @@ This project is licensed under the MIT License.
 
 ## TODO
 
--   [] add score function
--   [] ux/ui redesign
+-   [ ] add score function
+-   [ ] ux/ui redesign
