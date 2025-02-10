@@ -64,7 +64,10 @@ def play_game():
     root = tk.Tk()
     root.title("24 Game")
     
-    numbers = generate_numbers()
+    while True:
+        numbers = generate_numbers()
+        if generate_all_expressions(numbers):
+            break
     
     label_numbers = tk.Label(root, text=f"Your numbers:\n{numbers}")
     label_numbers.pack()
