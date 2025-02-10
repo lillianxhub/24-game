@@ -40,19 +40,24 @@ def play_game():
         user_input = entry.get()
         if evaluate_expression(user_input) == 24:
             messagebox.showinfo("Result", "Correct! You made 24.")
+            new_game()  # Automatically start a new game
         else:
             messagebox.showinfo("Result", "Incorrect.")
     
     def new_game():
         nonlocal numbers
-        numbers = generate_numbers()
-        label_numbers.config(text=f"Your numbers: {numbers}")
+        while True:
+            numbers = generate_numbers()
+            if generate_all_expressions(numbers):
+                break
+        label_numbers.config(text=f"Your numbers:\n{numbers}")
         entry.delete(0, tk.END)
     
     def show_solution():
         solutions = generate_all_expressions(numbers)
         if solutions:
-            messagebox.showinfo("Solutions", f"Possible solution: {random.choice(solutions)}")
+            formatted_solutions = "\n".join([f"{i+1}. {sol}" for i, sol in enumerate(solutions)])
+            messagebox.showinfo("Solutions", f"Solutions found: {len(solutions)}\n\nPossible solutions:\n" + formatted_solutions)
         else:
             messagebox.showinfo("Solutions", "No possible solutions exist for these numbers.")
     
@@ -61,7 +66,7 @@ def play_game():
     
     numbers = generate_numbers()
     
-    label_numbers = tk.Label(root, text=f"Your numbers: {numbers}")
+    label_numbers = tk.Label(root, text=f"Your numbers:\n{numbers}")
     label_numbers.pack()
     
     entry = tk.Entry(root)
